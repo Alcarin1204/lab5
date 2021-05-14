@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище Permyakov_ForWPFModelContainer" CdmEntityContainer="PermyakovForWPF">
+    <EntitySetMapping Name="Images">
+      <EntityTypeMapping TypeName="Permyakov_ForWPFModel.Image">
+        <MappingFragment StoreEntitySet="Images">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date_added" ColumnName="Date_added" />
+          <ScalarProperty Name="Image1" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="Permyakov_ForWPFModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Avatar_id" ColumnName="Avatar_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UsersImage" TypeName="Permyakov_ForWPFModel.UsersImage" StoreEntitySet="UsersImage">
+      <EndProperty Name="Users">
+        <ScalarProperty Name="Id" ColumnName="image_id" />
+      </EndProperty>
+      <EndProperty Name="Images">
+        <ScalarProperty Name="Id" ColumnName="user_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

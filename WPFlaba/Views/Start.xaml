@@ -1,0 +1,18 @@
+﻿<Window x:Class="WPFlaba.Views.Start"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFlaba.Views"
+        mc:Ignorable="d"
+        Title="Start" Height="255.882" Width="294.538">
+    <Grid>
+        <Button x:Name="enterButton" Content="Enter" HorizontalAlignment="Left" Margin="25,171,0,0" VerticalAlignment="Top" Width="75" Click="enterButton_Click"/>
+        <Button x:Name="registrButton" Content="Registration" HorizontalAlignment="Left" Margin="181,171,0,0" VerticalAlignment="Top" Width="75" Click="registrButton_Click"/>
+        <TextBox x:Name="emailBox" HorizontalAlignment="Left" Height="23" Margin="136,33,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="passBox" HorizontalAlignment="Left" Height="23" Margin="136,95,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="Mail" Content="Mail" HorizontalAlignment="Left" Margin="25,38,0,0" VerticalAlignment="Top"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="25,92,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

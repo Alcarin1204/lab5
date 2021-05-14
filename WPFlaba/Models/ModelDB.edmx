@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Permyakov_ForWPFModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date_added" Type="datetime" Nullable="false" />
+          <Property Name="Image" Type="image" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Birthday" Type="date" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Avatar_id" Type="bigint" />
+        </EntityType>
+        <EntityType Name="UsersImage">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="image_id" />
+          </Key>
+          <Property Name="user_id" Type="bigint" Nullable="false" />
+          <Property Name="image_id" Type="bigint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Users__Avatar_id__29572725">
+          <End Role="Images" Type="Self.Images" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Images">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="Avatar_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsersImag__image__2A4B4B5E">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UsersImage" Type="Self.UsersImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersImage">
+              <PropertyRef Name="image_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsersImag__user___2B3F6F97">
+          <End Role="Images" Type="Self.Images" Multiplicity="1" />
+          <End Role="UsersImage" Type="Self.UsersImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Images">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersImage">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Permyakov_ForWPFModelContainer">
+          <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersImage" EntityType="Self.UsersImage" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Users__Avatar_id__29572725" Association="Self.FK__Users__Avatar_id__29572725">
+            <End Role="Images" EntitySet="Images" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsersImag__image__2A4B4B5E" Association="Self.FK__UsersImag__image__2A4B4B5E">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersImage" EntitySet="UsersImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsersImag__user___2B3F6F97" Association="Self.FK__UsersImag__user___2B3F6F97">
+            <End Role="Images" EntitySet="Images" />
+            <End Role="UsersImage" EntitySet="UsersImage" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Permyakov_ForWPFModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date_added" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Image1" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Users__Avatar_id__29572725" FromRole="Images" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.UsersImage" FromRole="Images" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Avatar_id" Type="Int64" />
+          <NavigationProperty Name="Image" Relationship="Self.FK__Users__Avatar_id__29572725" FromRole="Users" ToRole="Images" />
+          <NavigationProperty Name="Images" Relationship="Self.UsersImage" FromRole="Users" ToRole="Images" />
+        </EntityType>
+        <Association Name="FK__Users__Avatar_id__29572725">
+          <End Role="Images" Type="Self.Image" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Images">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="Avatar_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsersImage">
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <End Role="Images" Type="Self.Image" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="PermyakovForWPF" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Images" EntityType="Self.Image" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Users__Avatar_id__29572725" Association="Self.FK__Users__Avatar_id__29572725">
+            <End Role="Images" EntitySet="Images" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="UsersImage" Association="Self.UsersImage">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Permyakov_ForWPFModelContainer" CdmEntityContainer="PermyakovForWPF">
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="Permyakov_ForWPFModel.Image">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date_added" ColumnName="Date_added" />
+                <ScalarProperty Name="Image1" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Permyakov_ForWPFModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Avatar_id" ColumnName="Avatar_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="UsersImage" TypeName="Permyakov_ForWPFModel.UsersImage" StoreEntitySet="UsersImage">
+            <EndProperty Name="Users">
+              <ScalarProperty Name="Id" ColumnName="image_id" />
+            </EndProperty>
+            <EndProperty Name="Images">
+              <ScalarProperty Name="Id" ColumnName="user_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
